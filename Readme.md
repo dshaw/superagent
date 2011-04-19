@@ -84,6 +84,14 @@
         .post('http://localhost:3000')
         .form({ foo: 'bar' });
 
+### Defining A Parser
+
+ Currently the parsers may act only on the complete buffered body, however their definitions are extremely simple:
+ 
+    agent.parse('text/*', function(str){ return str; });
+    agent.parse('application/json', JSON.parse);
+    agent.parse('application/x-www-form-urlencoded', require('qs').parse);
+
 ## Running Tests
 
     $ make test
